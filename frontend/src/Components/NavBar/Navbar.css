@@ -1,0 +1,300 @@
+/* Enhanced Responsive Navbar */
+.nav-div {
+  z-index: 9999;
+  position: fixed;
+  width: 100%;
+  top: 0;
+  left: 0;
+  background: white;
+  box-shadow: 0 1px 3px -2px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+}
+
+/* Logo responsive adjustments */
+.nav-div a img {
+  outline: none !important;
+  border: none !important;
+  box-shadow: none !important;
+  transition: transform 0.3s ease;
+}
+
+.nav-div a img:hover {
+  transform: scale(1.05);
+}
+
+.nav-div a:focus {
+  outline: none !important;
+  border: none !important;
+  box-shadow: none !important;
+}
+
+.nav-div a:first-child {
+  outline: none !important;
+  border: none !important;
+  box-shadow: none !important;
+}
+
+.nav-div a:first-child:focus {
+  outline: none !important;
+  border: none !important;
+  box-shadow: none !important;
+}
+
+/* Enhanced button styles */
+#button {
+  border: none;
+  border-radius: 8px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  color: #28a745;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  font-size: clamp(12px, 2vw, 14px);
+  position: relative;
+  overflow: hidden;
+  outline: 2px solid #28a745;
+  height: clamp(36px, 5vh, 40px);
+  width: clamp(70px, 10vw, 80px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-width: 60px;
+  max-width: 100px;
+}
+
+#button:hover {
+  color: #ffffff;
+  transform: translateY(-2px) scale(1.02);
+  outline: 2px solid #28a745;
+  box-shadow: 0 4px 12px rgba(40, 167, 69, 0.3);
+}
+
+#button::before {
+  content: "";
+  position: absolute;
+  left: -50px;
+  top: 0;
+  width: 0;
+  height: 100%;
+  background-color: #28a745;
+  transform: skewX(45deg);
+  z-index: -1;
+  transition: width 0.3s ease;
+}
+
+#button:hover::before {
+  width: 200%;
+}
+
+/* Mobile-first responsive button */
+@media (max-width: 480px) {
+  #button {
+    height: 32px;
+    width: 60px;
+    font-size: 11px;
+    min-width: 50px;
+  }
+}
+
+@media (min-width: 640px) {
+  #button {
+    font-size: 14px;
+    height: 42px;
+    width: 85px;
+    min-width: 70px;
+  }
+}
+
+@media (min-width: 768px) {
+  #button {
+    font-size: 15px;
+    height: clamp(42px, 6vh, 48px);
+    width: clamp(85px, 8vw, 100px);
+    min-width: 85px;
+    letter-spacing: 1px;
+  }
+}
+
+@media (min-width: 1024px) {
+  #button {
+    font-size: 16px;
+    height: 48px;
+    width: 100px;
+    letter-spacing: 1.5px;
+  }
+}
+
+/* User profile responsive */
+.user-profile {
+  transform: translateX(100%);
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.user-profile.active {
+  transform: translateX(0);
+}
+
+/* Mobile menu animations */
+.mobile-menu-enter {
+  animation: slideDown 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.mobile-menu-exit {
+  animation: slideUp 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+}
+
+/* Search bar responsive improvements */
+.input__container {
+  position: relative;
+  transition: all 0.3s ease;
+}
+
+.input__container input {
+  transition: all 0.3s ease;
+}
+
+.input__container input:focus {
+  transform: scale(1.02);
+  box-shadow: 0 0 0 3px rgba(40, 167, 69, 0.1);
+}
+
+/* Mobile menu overlay improvements */
+@media (max-width: 767px) {
+  .nav-div {
+    padding: clamp(8px, 2vw, 16px);
+  }
+  
+  .mobile-menu-overlay {
+    position: fixed;
+    top: 70px;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 40;
+    animation: fadeIn 0.3s ease;
+  }
+  
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+}
+
+/* Tablet specific adjustments */
+@media (min-width: 768px) and (max-width: 1023px) {
+  .nav-div {
+    padding: 12px 20px;
+  }
+  
+  .nav-div .gap-25px {
+    gap: 20px;
+  }
+}
+
+/* Desktop enhancements */
+@media (min-width: 1024px) {
+  .nav-div {
+    padding: 16px 40px;
+  }
+  
+  .nav-div:hover {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  }
+}
+
+/* Ultra-wide screen support */
+@media (min-width: 1440px) {
+  .nav-div {
+    max-width: 1600px;
+    margin: 0 auto;
+  }
+}
+
+/* Touch device optimizations */
+@media (hover: none) and (pointer: coarse) {
+  #button:hover {
+    transform: none;
+  }
+  
+  .nav-div a img:hover {
+    transform: none;
+  }
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  #button {
+    outline: 3px solid #28a745;
+    border: 2px solid #000;
+  }
+  
+  .nav-div {
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+  }
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  #button,
+  .nav-div a img,
+  .user-profile,
+  .mobile-menu-enter,
+  .mobile-menu-exit {
+    transition: none;
+    animation: none;
+  }
+}
+
+/* Dark mode support */
+@media (prefers-color-scheme: dark) {
+  .nav-div {
+    background: #1a1a1a;
+    color: #fff;
+  }
+  
+  #button {
+    color: #28a745;
+    background: transparent;
+  }
+  
+  .input__container input {
+    background: #2a2a2a;
+    color: #fff;
+    border-color: #444;
+  }
+}
+
+/* Print styles */
+@media print {
+  .nav-div {
+    position: static;
+    box-shadow: none;
+  }
+  
+  #button {
+    display: none;
+  }
+}

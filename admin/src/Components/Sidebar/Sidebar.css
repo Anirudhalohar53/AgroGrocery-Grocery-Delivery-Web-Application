@@ -1,0 +1,204 @@
+/* Modern Sidebar - Green Vegetable Theme */
+.sidebar {
+    display: flex;
+    flex-direction: column;
+    padding: 30px 20px;
+    gap: 15px;
+    width: 100%;
+    max-width: 280px;
+    height: 100vh;
+    background: linear-gradient(135deg, #27ae60 0%, #2ecc71 100%);
+    box-shadow: 10px 0 30px rgba(39, 174, 96, 0.2);
+    position: relative;
+    overflow: hidden;
+    font-family: 'poppins', sans-serif;
+}
+
+.sidebar::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: 
+        radial-gradient(circle at 10% 20%, rgba(255, 255, 255, 0.1) 0%, transparent 50%),
+        radial-gradient(circle at 90% 80%, rgba(255, 255, 255, 0.05) 0%, transparent 50%);
+    pointer-events: none;
+}
+
+.sidebar::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 1px;
+    height: 100%;
+    background: linear-gradient(to bottom, 
+        transparent 0%, 
+        rgba(255, 255, 255, 0.2) 50%, 
+        transparent 100%);
+}
+
+.sidebar-item {
+    display: flex;
+    align-items: center;
+    margin: 0 10px;
+    padding: 15px 20px;
+    border-radius: 12px;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    text-decoration: none;
+    gap: 15px;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+}
+
+.sidebar-item::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, 
+        transparent 0%, 
+        rgba(255, 255, 255, 0.2) 50%, 
+        transparent 100%);
+    transition: left 0.6s ease;
+}
+
+.sidebar-item:hover::before {
+    left: 100%;
+}
+
+.sidebar-item:hover {
+    background: rgba(255, 255, 255, 0.2);
+    transform: translateX(5px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+    border-color: rgba(255, 255, 255, 0.3);
+}
+
+.sidebar-item:active {
+    transform: translateX(3px) scale(0.98);
+}
+
+.sidebar-item img {
+    width: 24px;
+    height: 24px;
+    filter: brightness(0) invert(1);
+    transition: all 0.3s ease;
+    z-index: 2;
+}
+
+.sidebar-item:hover img {
+    transform: scale(1.1);
+    filter: brightness(0) invert(1) drop-shadow(0 0 8px rgba(255, 255, 255, 0.5));
+}
+
+.sidebar-item p {
+    color: white;
+    font-weight: 600;
+    font-size: 14px;
+    margin: 0;
+    letter-spacing: 0.3px;
+    transition: all 0.3s ease;
+    z-index: 2;
+}
+
+.sidebar-item:hover p {
+    text-shadow: 0 2px 10px rgba(255, 255, 255, 0.3);
+    transform: translateX(2px);
+}
+
+/* Active state for current page */
+.sidebar-item.active {
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.25) 0%, rgba(255, 255, 255, 0.15) 100%);
+    border-color: rgba(255, 255, 255, 0.4);
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+}
+
+.sidebar-item.active::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 4px;
+    height: 70%;
+    background: white;
+    border-radius: 0 4px 4px 0;
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.6; }
+}
+
+/* Logo/Brand Section */
+.sidebar-brand {
+    padding: 20px;
+    margin-bottom: 20px;
+    text-align: center;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.sidebar-brand h2 {
+    color: white;
+    font-size: 1.5rem;
+    font-weight: 800;
+    margin: 0;
+    text-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    letter-spacing: 1px;
+}
+
+.sidebar-brand h2 span {
+    color: #ffeaa7;
+    font-weight: 900;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .sidebar {
+        max-width: 70px;
+        padding: 20px 10px;
+    }
+    
+    .sidebar-item {
+        justify-content: center;
+        padding: 15px;
+        margin: 0 5px;
+    }
+    
+    .sidebar-item p,
+    .sidebar-brand {
+        display: none;
+    }
+    
+    .sidebar-item img {
+        width: 20px;
+        height: 20px;
+    }
+}
+
+@media (max-width: 480px) {
+    .sidebar {
+        max-width: 60px;
+        padding: 15px 8px;
+    }
+    
+    .sidebar-item {
+        padding: 12px;
+        margin: 0 3px;
+    }
+    
+    .sidebar-item img {
+        width: 18px;
+        height: 18px;
+    }
+}

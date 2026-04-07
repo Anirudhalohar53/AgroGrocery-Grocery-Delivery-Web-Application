@@ -1,0 +1,248 @@
+.footer{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 30px;
+    padding: 40px 20px 20px;
+}
+
+.footer-logo{
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.footer-logo img{
+    width: 40px;
+    height: 40px;
+}
+
+.footer-logo p{
+    color:#383838;
+    font-size: 28px;
+    font-weight: 700;
+}
+
+.footer-links{
+    display: flex;
+    list-style: none;
+    gap: 25px;
+    color:#252525;
+    font-size: 16px;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.footer-links li{
+    cursor: pointer;
+    transition: color 0.3s ease;
+}
+
+.footer-links li:hover{
+    color: #ff6f69;
+}
+
+.footer-social-icon{
+   display: flex;
+   gap: 15px;
+}
+
+.footer-icons-container{
+    padding: 8px;
+    padding-bottom: 6px;
+    background: #fbfbfbfb;
+    border:1px solid #ebebeb;
+    border-radius: 8px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.footer-icons-container:hover{
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.footer-icons-container img{
+    width: 20px;
+    height: 20px;
+}
+
+.footer-copyright{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    width: 100%;
+    margin-bottom: 20px;
+    color:#1a1a1a1a;
+    font-size: 16px;
+}
+
+.footer-copyright hr{
+    width: 90%;
+    border: none;
+    border-radius:10px ;
+    height: 2px;
+    background: #c7c7c7c7;
+}
+
+.footer-copyright p{
+    color:#383838;
+    font-size: 14px;
+    margin-top: 10px;
+    opacity: .7;
+    text-align: center;
+    padding: 0 20px;
+}
+
+/* Responsive adjustments */
+@media (min-width: 480px) {
+    .footer {
+        gap: 35px;
+        padding: 50px 30px 25px;
+    }
+    
+    .footer-logo img {
+        width: 45px;
+        height: 45px;
+    }
+    
+    .footer-logo p {
+        font-size: 32px;
+    }
+    
+    .footer-links {
+        gap: 30px;
+        font-size: 17px;
+    }
+    
+    .footer-social-icon {
+        gap: 18px;
+    }
+    
+    .footer-icons-container img {
+        width: 22px;
+        height: 22px;
+    }
+    
+    .footer-copyright p {
+        font-size: 15px;
+    }
+}
+
+@media (min-width: 768px) {
+    .footer {
+        gap: 40px;
+        padding: 60px 40px 30px;
+    }
+    
+    .footer-logo img {
+        width: 50px;
+        height: 50px;
+    }
+    
+    .footer-logo p {
+        font-size: 36px;
+    }
+    
+    .footer-links {
+        gap: 35px;
+        font-size: 18px;
+    }
+    
+    .footer-social-icon {
+        gap: 20px;
+    }
+    
+    .footer-icons-container img {
+        width: 24px;
+        height: 24px;
+    }
+    
+    .footer-copyright {
+        gap: 25px;
+    }
+    
+    .footer-copyright p {
+        font-size: 16px;
+    }
+}
+
+@media (min-width: 1024px) {
+    .footer {
+        gap: 45px;
+        padding: 70px 50px 35px;
+    }
+    
+    .footer-logo {
+        gap: 20px;
+    }
+    
+    .footer-logo img {
+        width: 55px;
+        height: 55px;
+    }
+    
+    .footer-logo p {
+        font-size: 42px;
+    }
+    
+    .footer-links {
+        gap: 40px;
+        font-size: 19px;
+    }
+    
+    .footer-social-icon {
+        gap: 22px;
+    }
+    
+    .footer-icons-container {
+        padding: 10px;
+        padding-bottom: 6px;
+    }
+    
+    .footer-icons-container img {
+        width: 26px;
+        height: 26px;
+    }
+    
+    .footer-copyright hr {
+        width: 80%;
+        height: 3px;
+    }
+    
+    .footer-copyright p {
+        font-size: 16px;
+        opacity: .5;
+    }
+}
+
+@media (min-width: 1280px) {
+    .footer {
+        gap: 50px;
+        padding: 80px 60px 40px;
+    }
+    
+    .footer-logo img {
+        width: 60px;
+        height: 60px;
+    }
+    
+    .footer-logo p {
+        font-size: 46px;
+    }
+    
+    .footer-links {
+        gap: 50px;
+        font-size: 20px;
+    }
+    
+    .footer-social-icon {
+        gap: 25px;
+    }
+    
+    .footer-icons-container img {
+        width: 28px;
+        height: 28px;
+    }
+}

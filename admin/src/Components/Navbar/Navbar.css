@@ -1,0 +1,322 @@
+/* Modern Navbar - Green Vegetable Theme */
+.navbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px 40px;
+    background: linear-gradient(135deg, #27ae60 0%, #2ecc71 100%);
+    box-shadow: 0 8px 32px rgba(39, 174, 96, 0.15);
+    margin-bottom: 0;
+    font-family: 'poppins', sans-serif;
+    position: relative;
+    overflow: hidden;
+    z-index: 100;
+}
+
+.navbar::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: 
+        radial-gradient(circle at 20% 50%, rgba(255, 255, 255, 0.1) 0%, transparent 50%),
+        radial-gradient(circle at 80% 50%, rgba(255, 255, 255, 0.05) 0%, transparent 50%);
+    pointer-events: none;
+}
+
+.nav-logo {
+    width: 200px;
+    filter: brightness(0) invert(1);
+    transition: all 0.3s ease;
+}
+
+.nav-logo:hover {
+    transform: scale(1.05);
+    filter: brightness(0) invert(1) drop-shadow(0 0 15px rgba(255, 255, 255, 0.5));
+}
+
+.nav-profile {
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    border: 3px solid rgba(255, 255, 255, 0.3);
+    transition: all 0.3s ease;
+    cursor: pointer;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+.nav-profile:hover {
+    border-color: rgba(255, 255, 255, 0.6);
+    transform: scale(1.1);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+}
+
+.admin {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    position: relative;
+    z-index: 2;
+}
+
+.admin h3 {
+    margin: 0;
+    color: white;
+    font-weight: 700;
+    font-size: 1.1rem;
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+    letter-spacing: 0.3px;
+}
+
+.admin h3 span {
+    color: #ffeaa7;
+    text-shadow: 0 2px 15px rgba(255, 234, 167, 0.5);
+    font-weight: 800;
+}
+
+.navbar-actions {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    position: relative;
+    z-index: 2;
+}
+
+.admin-email {
+    font-size: 13px;
+    color: rgba(255, 255, 255, 0.8);
+    font-weight: 500;
+    font-family: 'poppins', sans-serif;
+    background: rgba(255, 255, 255, 0.1);
+    padding: 8px 16px;
+    border-radius: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(10px);
+    transition: all 0.3s ease;
+}
+
+.admin-email:hover {
+    background: rgba(255, 255, 255, 0.2);
+    color: white;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+/* Logout Button */
+.logout-btn {
+    background: linear-gradient(135deg, #ff6b6b 0%, #ff5252 100%);
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 25px;
+    font-weight: 600;
+    font-size: 13px;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 4px 15px rgba(255, 107, 107, 0.3);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    position: relative;
+    overflow: hidden;
+}
+
+.logout-btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, 
+        transparent 0%, 
+        rgba(255, 255, 255, 0.3) 50%, 
+        transparent 100%);
+    transition: left 0.6s ease;
+}
+
+.logout-btn:hover::before {
+    left: 100%;
+}
+
+.logout-btn:hover {
+    background: linear-gradient(135deg, #ff5252 0%, #ff3838 100%);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(255, 107, 107, 0.4);
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+}
+
+.logout-btn:active {
+    transform: translateY(0) scale(0.98);
+}
+
+/* Notification Badge */
+.notification-badge {
+    position: relative;
+    cursor: pointer;
+}
+
+.notification-badge::after {
+    content: '3';
+    position: absolute;
+    top: -8px;
+    right: -8px;
+    background: linear-gradient(135deg, #ff6b6b 0%, #ff5252 100%);
+    color: white;
+    font-size: 10px;
+    font-weight: 700;
+    padding: 2px 6px;
+    border-radius: 10px;
+    border: 2px solid white;
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0%, 100% { 
+        transform: scale(1);
+        opacity: 1;
+    }
+    50% { 
+        transform: scale(1.1);
+        opacity: 0.8;
+    }
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+    .navbar {
+        padding: 15px 30px;
+    }
+    
+    .nav-logo {
+        width: 180px;
+    }
+    
+    .admin h3 {
+        font-size: 1rem;
+    }
+    
+    .admin-email {
+        font-size: 12px;
+        padding: 6px 12px;
+    }
+}
+
+@media (max-width: 768px) {
+    .navbar {
+        padding: 12px 20px;
+    }
+    
+    .nav-logo {
+        width: 150px;
+    }
+    
+    .admin h3 {
+        display: none;
+    }
+    
+    .navbar-actions {
+        gap: 15px;
+    }
+    
+    .admin-email {
+        display: none;
+    }
+    
+    .logout-btn {
+        padding: 8px 16px;
+        font-size: 12px;
+    }
+}
+
+@media (max-width: 480px) {
+    .navbar {
+        padding: 10px 15px;
+    }
+    
+    .nav-logo {
+        width: 120px;
+    }
+    
+    .nav-profile {
+        width: 35px;
+        height: 35px;
+    }
+    
+    .logout-btn {
+        padding: 6px 12px;
+        font-size: 11px;
+    }
+}
+
+.logout-btn {
+    padding: 8px 16px;
+    background: #ff6f69;
+    color: white;
+    border: 2px solid #ff6f69;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    font-family: 'poppins', sans-serif;
+}
+
+.logout-btn:hover {
+    background: #ff4141;
+    border-color: #ff4141;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(255, 111, 105, 0.3);
+}
+
+.logout-btn:active {
+    transform: translateY(0);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .navbar {
+        padding: 15px 20px;
+    }
+    
+    .nav-logo {
+        width: 150px;
+    }
+    
+    .nav-profile {
+        width: 50px;
+    }
+    
+    .admin h3 {
+        font-size: 16px;
+        margin-top: 15px;
+        margin-left: 8px;
+    }
+    
+    .navbar-actions {
+        gap: 10px;
+    }
+    
+    .admin-email {
+        display: none;
+    }
+    
+    .logout-btn {
+        padding: 6px 12px;
+        font-size: 12px;
+    }
+}
+
+@media (max-width: 480px) {
+    .nav-logo {
+        width: 120px;
+    }
+    
+    .admin h3 span {
+        display: block;
+        font-size: 12px;
+    }
+}

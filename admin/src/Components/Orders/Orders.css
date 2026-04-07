@@ -1,0 +1,234 @@
+/* Orders - Green Vegetable Theme */
+.order {
+  padding: 20px;
+  background: linear-gradient(135deg, #f5f5f5 0%, #27ae60 100%);
+  min-height: calc(100vh - 60px);
+  width: 100%;
+  box-sizing: border-box;
+  font-family: 'poppins', sans-serif;
+  position: relative;
+  overflow: hidden;
+}
+
+.order::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: 
+    radial-gradient(circle at 20% 80%, rgba(39, 174, 96, 0.1) 0%, transparent 50%),
+    radial-gradient(circle at 80% 20%, rgba(46, 204, 113, 0.1) 0%, transparent 50%);
+  pointer-events: none;
+  z-index: 1;
+}
+
+.order > * {
+  position: relative;
+  z-index: 2;
+}
+
+.order h3 {
+  color: #171717;
+  margin-bottom: 30px;
+  font-size: clamp(1.5rem, 4vw, 2rem);
+  font-weight: 800;
+  line-height: 1.2;
+  position: relative;
+  padding-bottom: 15px;
+}
+
+.order h3::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 60px;
+  height: 4px;
+  background: linear-gradient(135deg, #27ae60, #2ecc71);
+  border-radius: 2px;
+}
+
+.order-list {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.order-item {
+  display: grid;
+  grid-template-columns: auto 1fr auto auto auto;
+  gap: 20px;
+  background: white;
+  border: 2px solid transparent;
+  border-radius: 15px;
+  padding: 25px;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+  font-size: 14px;
+  color: #171717;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+}
+
+.order-item::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(135deg, rgba(39, 174, 96, 0.02) 0%, transparent 50%);
+  pointer-events: none;
+}
+
+.order-item:hover {
+  box-shadow: 0 12px 35px rgba(39, 174, 96, 0.15);
+  transform: translateY(-3px);
+  border-color: #27ae60;
+}
+
+.order-item img {
+  width: 40px;
+  height: 40px;
+  object-fit: contain;
+  border: 2px solid #27ae60;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+}
+
+.order-item img:hover {
+  border-color: #2ecc71;
+  transform: scale(1.05);
+}
+
+.order-item-food {
+  font-weight: 600;
+  color: #171717;
+  margin-bottom: 8px;
+  line-height: 1.4;
+}
+
+.order-item-name {
+  font-weight: 600;
+  color: #171717;
+  margin-top: 12px;
+  margin-bottom: 5px;
+}
+
+.order-item-address {
+  margin-bottom: 10px;
+  line-height: 1.4;
+}
+
+.order-item-address p {
+  margin: 2px 0;
+  color: #171717;
+}
+
+.order-item-phone {
+  color: #171717;
+  font-size: 13px;
+}
+
+.order-item p:not(.order-item-food):not(.order-item-name):not(.order-item-phone) {
+  font-weight: 600;
+  color: #171717;
+  align-self: center;
+}
+
+.order-item select {
+  background-color: white;
+  border: 2px solid #27ae60;
+  border-radius: 10px;
+  padding: 10px 12px;
+  outline: none;
+  font-size: 13px;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  align-self: center;
+  font-family: 'poppins', sans-serif;
+  font-weight: 500;
+}
+
+.order-item select:focus {
+  border-color: #2ecc71;
+  box-shadow: 0 0 0 4px rgba(39, 174, 96, 0.1);
+  transform: scale(1.01);
+}
+
+.order-item select option[value="Order Processing"] {
+  color: #ffc107;
+  background: #fff3cd;
+}
+
+.order-item select option[value="Out for delivery"] {
+  color: #17a2b8;
+  background: #d1ecf1;
+}
+
+.order-item select option[value="Delivered"] {
+  color: #27ae60;
+  background: #d4edda;
+}
+
+.status-processing {
+  background: linear-gradient(135deg, #fff3cd 0%, #ffeaa7 100%);
+  border-color: #ffc107;
+  color: #856404;
+}
+
+.status-delivery {
+  background: linear-gradient(135deg, #d1ecf1 0%, #81ecec 100%);
+  border-color: #17a2b8;
+  color: #0c5460;
+}
+
+.status-delivered {
+  background: linear-gradient(135deg, #d4edda 0%, #a8e6cf 100%);
+  border-color: #27ae60;
+  color: #155724;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .order {
+    padding: 15px;
+  }
+  
+  .order h3 {
+    font-size: 1.5rem;
+  }
+  
+  .order-item {
+    grid-template-columns: 1fr;
+    gap: 15px;
+    padding: 15px;
+  }
+  
+  .order-item img {
+    width: 30px;
+    height: 30px;
+  }
+  
+  .order-item select {
+    width: 100%;
+    justify-self: stretch;
+  }
+}
+
+@media (max-width: 480px) {
+  .order {
+    padding: 10px;
+  }
+  
+  .order-item {
+    padding: 12px;
+    font-size: 13px;
+  }
+  
+  .order h3 {
+    font-size: 1.3rem;
+  }
+}

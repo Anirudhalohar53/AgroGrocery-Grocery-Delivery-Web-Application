@@ -1,0 +1,306 @@
+/* ListProduct - Green Vegetable Theme (Like Stock Management) */
+.list-product {
+  padding: 20px;
+  background: linear-gradient(135deg, #f5f5f5 0%, #27ae60 100%);
+  min-height: calc(100vh - 60px);
+  width: 100%;
+  box-sizing: border-box;
+  font-family: 'poppins', sans-serif;
+  position: relative;
+  overflow: hidden;
+}
+
+.list-product::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: 
+    radial-gradient(circle at 20% 80%, rgba(39, 174, 96, 0.1) 0%, transparent 50%),
+    radial-gradient(circle at 80% 20%, rgba(46, 204, 113, 0.1) 0%, transparent 50%);
+  pointer-events: none;
+  z-index: 1;
+}
+
+.list-product > * {
+  position: relative;
+  z-index: 2;
+}
+
+.list-product h1 {
+  color: #171717;
+  margin-bottom: 30px;
+  font-size: clamp(1.5rem, 4vw, 2rem);
+  font-weight: 800;
+  line-height: 1.2;
+  position: relative;
+  padding-bottom: 15px;
+}
+
+.list-product h1::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 60px;
+  height: 4px;
+  background: linear-gradient(135deg, #27ae60, #2ecc71);
+  border-radius: 2px;
+}
+
+.listproduct-format-main {
+  display: grid;
+  grid-template-columns: 80px 2fr 1fr 1fr 1fr 1fr 120px;
+  gap: 15px;
+  width: 100%;
+  padding: 20px 15px;
+  color: white;
+  font-size: 14px;
+  font-weight: 600;
+  background: linear-gradient(135deg, #27ae60 0%, #2ecc71 100%);
+  border-radius: 15px;
+  margin-bottom: 15px;
+  box-shadow: 0 8px 25px rgba(39, 174, 96, 0.2);
+  border: 2px solid transparent;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+.listproduct-format {
+  display: grid;
+  grid-template-columns: 80px 2fr 1fr 1fr 1fr 1fr 120px;
+  gap: 15px;
+  width: 100%;
+  padding: 20px 15px;
+  align-items: center;
+  font-weight: 500;
+  color: #171717;
+  background: white;
+  border-radius: 15px;
+  margin-bottom: 15px;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  border: 2px solid transparent;
+  position: relative;
+  overflow: hidden;
+}
+
+.listproduct-format::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(135deg, rgba(39, 174, 96, 0.02) 0%, transparent 50%);
+  pointer-events: none;
+}
+
+.listproduct-format:hover {
+  box-shadow: 0 12px 35px rgba(39, 174, 96, 0.15);
+  transform: translateY(-3px);
+  border-color: #27ae60;
+}
+
+.listproduct-product-icon {
+  height: 60px;
+  width: 60px;
+  object-fit: cover;
+  border-radius: 8px;
+  border: 2px solid #27ae60;
+  transition: all 0.3s ease;
+}
+
+.listproduct-product-icon:hover {
+  border-color: #2ecc71;
+  transform: scale(1.05);
+}
+
+.listproduct-allproducts {
+  overflow-y: auto;
+  max-height: calc(100vh - 200px);
+}
+
+.listproduct-allproducts hr {
+  border: none;
+  height: 1px;
+  background: #27ae60;
+  margin: 5px 0;
+  opacity: 0.3;
+}
+
+.listproduct-actions {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  justify-content: center;
+}
+
+.listproduct-edit-button {
+  cursor: pointer;
+  padding: 8px 12px;
+  border-radius: 8px;
+  background: linear-gradient(135deg, #27ae60 0%, #2ecc71 100%);
+  color: white;
+  font-size: 13px;
+  font-weight: 600;
+  border: none;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  box-shadow: 0 4px 15px rgba(39, 174, 96, 0.3);
+}
+
+.listproduct-edit-button:hover {
+  background: linear-gradient(135deg, #229954 0%, #27ae60 100%);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(39, 174, 96, 0.4);
+}
+
+.listproduct-save-button {
+  cursor: pointer;
+  padding: 8px 12px;
+  border-radius: 8px;
+  background: linear-gradient(135deg, #27ae60 0%, #2ecc71 100%);
+  color: white;
+  font-size: 13px;
+  font-weight: 600;
+  border: none;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  box-shadow: 0 4px 15px rgba(39, 174, 96, 0.3);
+}
+
+.listproduct-save-button:hover {
+  background: linear-gradient(135deg, #229954 0%, #27ae60 100%);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(39, 174, 96, 0.4);
+}
+
+.listproduct-cancel-button {
+  cursor: pointer;
+  padding: 8px 12px;
+  border-radius: 8px;
+  background: linear-gradient(135deg, #dc3545 0%, #c82333 100%);
+  color: white;
+  font-size: 13px;
+  font-weight: 600;
+  border: none;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  box-shadow: 0 4px 15px rgba(220, 53, 69, 0.3);
+}
+
+.listproduct-cancel-button:hover {
+  background: linear-gradient(135deg, #c82333 0%, #bd2130 100%);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(220, 53, 69, 0.4);
+}
+
+.listproduct-edit-input {
+  padding: 8px 10px;
+  border-radius: 8px;
+  border: 2px solid #27ae60;
+  font-size: 14px;
+  outline: none;
+  transition: all 0.3s ease;
+  width: 100%;
+  box-sizing: border-box;
+  font-family: 'poppins', sans-serif;
+  background: #f8f9fa;
+}
+
+.listproduct-edit-input:focus {
+  border-color: #2ecc71;
+  box-shadow: 0 0 0 4px rgba(39, 174, 96, 0.1);
+  transform: scale(1.01);
+  background: white;
+}
+
+.listproduct-remove-button {
+  cursor: pointer;
+  padding: 8px;
+  border-radius: 8px;
+  background: linear-gradient(135deg, #dc3545 0%, #c82333 100%);
+  color: white;
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  min-width: 36px;
+  height: 36px;
+  box-shadow: 0 4px 15px rgba(220, 53, 69, 0.3);
+}
+
+.listproduct-remove-button:hover {
+  background: linear-gradient(135deg, #c82333 0%, #bd2130 100%);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(220, 53, 69, 0.4);
+}
+
+.listproduct-remove-button:active {
+  transform: translateY(0);
+}
+
+.hidden {
+  display: none !important;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .list-product {
+    padding: 15px;
+  }
+  
+  .listproduct-format-main,
+  .listproduct-format {
+    grid-template-columns: 60px 1fr;
+    gap: 10px;
+    padding: 10px;
+  }
+  
+  .listproduct-format-main > *:not(:first-child):not(:last-child),
+  .listproduct-format > *:not(:first-child):not(:last-child) {
+    display: none;
+  }
+  
+  .listproduct-product-icon {
+    height: 40px;
+    width: 40px;
+  }
+  
+  .listproduct-actions {
+    grid-column: 2;
+    justify-self: end;
+  }
+}
+
+@media (max-width: 480px) {
+  .list-product {
+    padding: 10px;
+  }
+  
+  .listproduct-format-main,
+  .listproduct-format {
+    padding: 8px;
+  }
+  
+  .listproduct-edit-input {
+    padding: 6px 8px;
+    font-size: 13px;
+  }
+  
+  .listproduct-edit-button,
+  .listproduct-save-button,
+  .listproduct-cancel-button {
+    padding: 6px 10px;
+    font-size: 12px;
+  }
+}
