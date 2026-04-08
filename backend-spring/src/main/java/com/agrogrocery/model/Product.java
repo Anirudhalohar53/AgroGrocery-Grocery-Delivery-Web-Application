@@ -19,12 +19,14 @@ public class Product {
     private boolean available;
     private String description;
     private int stock;
+    private String unit; // kg, g, pcs, etc.
 
     // Constructors
     public Product() {
         this.date = new Date();
         this.available = true;
         this.stock = 0;
+        this.unit = "kg"; // Default unit
     }
 
     public Product(int productId, String name, String image, String category, 
@@ -126,5 +128,13 @@ public class Product {
 
     public void setStock(int stock) {
         this.stock = stock;
+    }
+
+    public String getUnit() {
+        return unit;
+    }
+
+    public void setUnit(String unit) {
+        this.unit = unit;
     }
 }

@@ -208,23 +208,22 @@
 
 .checkout-button {
     width: 100%;
-    background: linear-gradient(135deg, #ff6b6b, #ff8787);
+    background: linear-gradient(135deg, #28a745, #20c997);
     color: white;
     border: none;
-    border-radius: 12px;
-    padding: 1rem 2rem;
-    font-size: 1rem;
+    border-radius: 8px;
+    padding: 16px;
+    font-size: 16px;
     font-weight: 600;
     cursor: pointer;
     transition: all 0.3s ease;
-    box-shadow: 0 4px 16px rgba(255, 107, 107, 0.3);
     text-align: center;
 }
 
 .checkout-button:hover {
-    background: linear-gradient(135deg, #ff8787, #ff6b6b);
+    background: linear-gradient(135deg, #20c997, #28a745);
     transform: translateY(-2px);
-    box-shadow: 0 6px 20px rgba(255, 107, 107, 0.4);
+    box-shadow: 0 6px 20px rgba(40, 167, 69, 0.4);
 }
 
 .checkout-button:active {

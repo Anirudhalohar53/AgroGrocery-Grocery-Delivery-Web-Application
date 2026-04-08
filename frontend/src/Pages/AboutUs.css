@@ -6,9 +6,9 @@
 
 /* Hero Section */
 .about-hero {
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-  color: white;
-  padding: 120px 20px 80px;
+  background: linear-gradient(135deg, #f8faf8 0%, #e8f5e8 50%, #28a745 100%);
+  color: #1a1a1a;
+  padding: 20px 20px 20px;
   text-align: center;
   position: relative;
   overflow: hidden;
@@ -20,7 +20,7 @@
   top: 0;
   left: 0;
   right: 0;
-  bottom: 0;
+  bottom: -127px;
   background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="%23ffffff" fill-opacity="0.1" d="M0,96L48,112C96,128,192,160,288,160C384,160,480,128,576,122.7C672,117,768,139,864,138.7C960,139,1056,117,1152,112C1248,107,1344,117,1392,122.7L1440,128L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path></svg>') no-repeat bottom;
   background-size: cover;
 }
@@ -42,7 +42,7 @@
 
 /* Main Content */
 .about-content {
-  padding: 60px 20px;
+  padding: 20px 20px;
 }
 
 .container {
@@ -51,9 +51,9 @@
 }
 
 /* Story Section */
-.story-section {
+/* .story-section {
   margin-bottom: 80px;
-}
+} */
 
 .section-content h2 {
   font-size: 2.5rem;
@@ -71,7 +71,7 @@
   transform: translateX(-50%);
   width: 60px;
   height: 4px;
-  background: linear-gradient(135deg, #667eea, #764ba2);
+  background: linear-gradient(135deg, #28a745, #20c997);
   border-radius: 2px;
 }
 
@@ -88,14 +88,14 @@
 
 /* Mission & Vision Section */
 .mission-vision-section {
-  margin-bottom: 80px;
+  margin-bottom: 20px;
 }
 
 .cards-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   gap: 40px;
-  margin-top: 3rem;
+  /* margin-top: 3rem; */
 }
 
 .card {
@@ -130,7 +130,7 @@
 
 /* Values Section */
 .values-section {
-  margin-bottom: 80px;
+  margin-bottom: 20px;
 }
 
 .values-section h2 {
@@ -149,7 +149,7 @@
   transform: translateX(-50%);
   width: 60px;
   height: 4px;
-  background: linear-gradient(135deg, #667eea, #764ba2);
+  background: linear-gradient(135deg, #28a745, #20c997);
   border-radius: 2px;
 }
 
@@ -191,7 +191,7 @@
 
 /* Team Section */
 .team-section {
-  margin-bottom: 80px;
+  margin-bottom: 20px;
   text-align: center;
 }
 
@@ -210,7 +210,7 @@
   transform: translateX(-50%);
   width: 60px;
   height: 4px;
-  background: linear-gradient(135deg, #667eea, #764ba2);
+  background: linear-gradient(135deg, #28a745, #20c997);
   border-radius: 2px;
 }
 
@@ -240,7 +240,7 @@
 .stat-number {
   font-size: 2.5rem;
   font-weight: 700;
-  color: #667eea;
+  color: #28a745;
   margin-bottom: 0.5rem;
 }
 
@@ -270,7 +270,7 @@
   transform: translateX(-50%);
   width: 60px;
   height: 4px;
-  background: linear-gradient(135deg, #667eea, #764ba2);
+  background: linear-gradient(135deg, #28a745, #20c997);
   border-radius: 2px;
 }
 

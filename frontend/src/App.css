@@ -1,20 +1,6 @@
 /* Global Responsive Styles */
-* {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-}
-
 html, body {
-  width: 100%;
-  height: 100%;
   overflow-x: hidden;
-  scroll-behavior: smooth;
-}
-
-/* Prevent automatic scrolling to anchors */
-html {
-  scroll-behavior: auto;
 }
 
 /* Ensure no automatic scroll restoration */
@@ -289,11 +275,6 @@ body {
 @media (min-width: 768px) {
   .w-full-mobile { width: auto; }
   .w-auto-mobile { width: auto; }
-}
-
-/* Smooth scrolling */
-html {
-  scroll-behavior: smooth;
 }
 
 /* Custom scrollbar for webkit browsers */

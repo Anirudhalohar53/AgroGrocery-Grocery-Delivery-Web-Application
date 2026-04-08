@@ -261,6 +261,25 @@ function Navbar() {
                         Vegetables 
                     </Link>
                     <Link 
+                        to='/dairy-essentials' 
+                        onClick={() => handleMenuClick("dairy-essentials")}
+                        style={{ 
+                            textDecoration: 'none', 
+                            color: menu === "dairy-essentials" ? '#fff' : 'rgba(255,255,255,0.9)',
+                            fontWeight: menu === "dairy-essentials" ? 'bold' : 'normal',
+                            outline: 'none',
+                            boxShadow: 'none',
+                            border: 'none',
+                            textShadow: menu === "dairy-essentials" ? '0 2px 4px rgba(0,0,0,0.3)' : 'none',
+                            backgroundColor: menu === "dairy-essentials" ? 'rgba(255,255,255,0.2)' : 'transparent',
+                            padding: '0.5rem 1rem',
+                            borderRadius: '8px',
+                            transition: 'all 0.3s ease'
+                        }}
+                    >
+                        Dairy Essentials 
+                    </Link>
+                    <Link 
                         to='/about' 
                         onClick={() => handleMenuClick("About")}
                         style={{ 
@@ -628,6 +647,21 @@ function Navbar() {
                             }}
                         >
                             Vegetables 
+                        </Link>
+                        <Link 
+                            to='/dairy-essentials' 
+                            onClick={() => { handleMenuClick("dairy-essentials"); closeMobileMenu(); }}
+                            style={{ 
+                                textDecoration: 'none', 
+                                color: menu === "dairy-essentials" ? '#28a745' : '#333',
+                                fontWeight: menu === "dairy-essentials" ? 'bold' : 'normal',
+                                padding: '0.75rem 1rem',
+                                borderRadius: '8px',
+                                backgroundColor: menu === "dairy-essentials" ? 'rgba(40,167,69,0.1)' : 'transparent',
+                                transition: 'all 0.3s ease'
+                            }}
+                        >
+                            Dairy Essentials 
                         </Link>
                         <Link 
                             to='/about' 

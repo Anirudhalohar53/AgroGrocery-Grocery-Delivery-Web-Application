@@ -117,7 +117,10 @@ const NewCollections = () => {
                         name={item.name} 
                         image={item.image} 
                         new_price={item.new_price} 
-                        old_price={item.old_price} 
+                        old_price={item.old_price}
+                        stock={item.stock}
+                        available={item.available}
+                        unit={item.unit}
                       />
                     </div>
                   ))}

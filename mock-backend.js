@@ -68,6 +68,9 @@ let reviews = [
 // In-memory contacts storage (for testing)
 let contacts = [];
 
+// In-memory orders storage (for testing)
+let orders = [];
+
 // Helper functions
 const generateToken = (email) => {
   return jwt.sign({ email }, JWT_SECRET, { expiresIn: '24h' });
@@ -75,6 +78,23 @@ const generateToken = (email) => {
 
 const findUserByEmail = (email) => {
   return users.find(user => user.email === email);
+};
+
+const authenticateToken = (req, res, next) => {
+  const authHeader = req.headers['auth-token'];
+  const token = authHeader && authHeader.split(' ')[1]; // Bearer TOKEN
+  
+  if (!token) {
+    return res.status(401).json({ success: false, message: 'Authentication token required' });
+  }
+
+  jwt.verify(token, JWT_SECRET, (err, user) => {
+    if (err) {
+      return res.status(403).json({ success: false, message: 'Invalid or expired token' });
+    }
+    req.userEmail = user.email;
+    next();
+  });
 };
 
 // Routes
@@ -485,6 +505,169 @@ app.delete('/api/contacts/:id', (req, res) => {
   }
 });
 
+// Order Management Endpoints
+app.post('/api/place-cod', authenticateToken, (req, res) => {
+  try {
+    const { items, amount, address } = req.body;
+    const userEmail = req.userEmail;
+    const user = findUserByEmail(userEmail);
+    
+    if (!user) {
+      return res.status(404).json({ success: false, message: 'User not found' });
+    }
+
+    const newOrder = {
+      id: String(orders.length + 1),
+      userId: user.id,
+      items,
+      amount: parseFloat(amount),
+      address,
+      status: 'Order Processing',
+      date: new Date(),
+      payment: false,
+      paymentMethod: 'COD'
+    };
+
+    orders.push(newOrder);
+    console.log('COD order placed:', newOrder.id);
+
+    res.json({
+      success: true,
+      orderId: newOrder.id,
+      message: 'COD order placed successfully'
+    });
+  } catch (error) {
+    console.error('Error placing COD order:', error.message);
+    res.status(500).json({
+      success: false,
+      message: 'Error placing COD order: ' + error.message
+    });
+  }
+});
+
+app.post('/api/userorders', authenticateToken, (req, res) => {
+  try {
+    const userEmail = req.userEmail;
+    const user = findUserByEmail(userEmail);
+    
+    if (!user) {
+      return res.json({ success: false, message: 'User not found' });
+    }
+
+    const userOrders = orders.filter(order => order.userId === user.id);
+    console.log('Fetching orders for user:', userEmail, 'Count:', userOrders.length);
+
+    res.json({
+      success: true,
+      data: userOrders
+    });
+  } catch (error) {
+    console.error('Error fetching user orders:', error.message);
+    res.json({
+      success: false,
+      message: 'Error fetching orders'
+    });
+  }
+});
+
+app.get('/api/list', (req, res) => {
+  try {
+    console.log('Fetching all orders, count:', orders.length);
+    res.json({
+      success: true,
+      data: orders
+    });
+  } catch (error) {
+    console.error('Error fetching all orders:', error.message);
+    res.json({
+      success: false,
+      message: 'Error fetching orders'
+    });
+  }
+});
+
+app.post('/api/status', (req, res) => {
+  try {
+    const { orderId, status } = req.body;
+    
+    const orderIndex = orders.findIndex(order => order.id === orderId);
+    if (orderIndex === -1) {
+      return res.json({
+        success: false,
+        message: 'Order not found'
+      });
+    }
+
+    orders[orderIndex].status = status;
+    console.log('Order status updated:', orderId, '->', status);
+
+    res.json({
+      success: true,
+      message: 'Status updated'
+    });
+  } catch (error) {
+    console.error('Error updating order status:', error.message);
+    res.json({
+      success: false,
+      message: 'Error updating status'
+    });
+  }
+});
+
+app.post('/api/cancel', authenticateToken, (req, res) => {
+  try {
+    const { orderId } = req.body;
+    const userEmail = req.userEmail;
+    const user = findUserByEmail(userEmail);
+    
+    if (!user) {
+      return res.status(404).json({ success: false, message: 'User not found' });
+    }
+
+    const orderIndex = orders.findIndex(order => order.id === orderId);
+    if (orderIndex === -1) {
+      return res.json({
+        success: false,
+        message: 'Order not found'
+      });
+    }
+
+    const order = orders[orderIndex];
+    
+    // Check if order belongs to the current user
+    if (order.userId !== user.id) {
+      return res.json({
+        success: false,
+        message: 'Unauthorized to cancel this order'
+      });
+    }
+
+    // Check if order can be cancelled (only if not delivered)
+    if (order.status === 'Delivered') {
+      return res.json({
+        success: false,
+        message: 'Cannot cancel delivered order'
+      });
+    }
+
+    // Update order status to cancelled
+    orders[orderIndex].status = 'Cancelled';
+    console.log('Order cancelled:', orderId);
+
+    res.json({
+      success: true,
+      message: 'Order cancelled successfully'
+    });
+
+  } catch (error) {
+    console.error('Error cancelling order:', error.message);
+    res.status(500).json({
+      success: false,
+      message: 'Error cancelling order: ' + error.message
+    });
+  }
+});
+
 // Start server
 app.listen(PORT, () => {
   console.log(`Mock backend server running on http://localhost:${PORT}`);
@@ -502,6 +685,11 @@ app.listen(PORT, () => {
   console.log('  GET  /api/contacts/:id');
   console.log('  PUT  /api/contacts/:id/status');
   console.log('  DELETE /api/contacts/:id');
+  console.log('  POST /api/place-cod');
+  console.log('  POST /api/userorders');
+  console.log('  GET  /api/list');
+  console.log('  POST /api/status');
+  console.log('  POST /api/cancel');
 });
 
 module.exports = app;

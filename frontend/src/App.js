@@ -14,9 +14,11 @@ import ContactUs from './Pages/ContactUs';
 
 import LoginSignup from './Pages/LoginSignup';
 import Profile from './Pages/Profile';
+import DairyEssentials from './Pages/DairyEssentials';
 import men_banner from './Components/Assets/banner_mens.jpg' ;
 import women_banner from './Components/Assets/banner_women.png' 
 import kid_banner from './Components/Assets/banner_kids.png'
+import dairy_banner from './Components/Assets/banner5.jpg'
 import Footer from './Components/Footer/Footer';
 import PlaceOrder from './Components/PlaceOrder/PlaceOrder';
 import Verify from './Pages/Verify/Verify';
@@ -37,6 +39,7 @@ function App() {
         {/* <Route path='/BreakFast' element={<ShopCateogary banner={kid_banner} cateogary="BreakFast"/>}/> */}
         <Route path='/Vegetables' element={<ShopCateogary banner={women_banner}  category="Vegetables"/>}/>
         {/* <Route path='/HouseHolds' element={<ShopCateogary banner={kid_banner} category="HouseHolds"/>}/> */}
+        <Route path='/dairy-essentials' element={<DairyEssentials banner={dairy_banner}/>}/>
         <Route path='/about' element={<AboutUs/>}/>
         <Route path='/contact' element={<ContactUs/>}/>
 

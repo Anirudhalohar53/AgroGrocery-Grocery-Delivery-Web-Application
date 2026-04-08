@@ -275,28 +275,30 @@
   transform: translateX(-50%) translateY(-10px);
 }
 
-.quick-action-btn {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 6px;
-  padding: 12px 16px;
-  background: rgba(255, 255, 255, 0.95);
+.action-btn {
+  background: linear-gradient(135deg, #28a745, #20c997);
+  color: white;
   border: none;
-  border-radius: 16px;
-  font-size: 11px;
-  font-weight: 600;
-  color: #475569;
+  border-radius: 8px;
+  padding: 12px 16px;
   cursor: pointer;
   transition: all 0.3s ease;
-  backdrop-filter: blur(10px);
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 44px;
+  height: 44px;
+  position: relative;
+  overflow: hidden;
+  font-weight: 600;
+  font-size: 14px;
+  box-shadow: 0 4px 12px rgba(40, 167, 69, 0.3);
 }
 
-.quick-action-btn:hover {
-  background: white;
-  transform: translateY(-4px);
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+.action-btn:hover {
+  background: linear-gradient(135deg, #20c997, #28a745);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(40, 167, 69, 0.4);
 }
 
 .btn-icon {
@@ -393,6 +395,17 @@
   box-shadow: 0 0 10px rgba(16, 185, 129, 0.5);
 }
 
+.status-indicator.low-stock {
+  background: linear-gradient(135deg, #f59e0b, #d97706);
+  box-shadow: 0 0 10px rgba(245, 158, 11, 0.5);
+}
+
+.status-indicator.out-of-stock {
+  background: linear-gradient(135deg, #ef4444, #dc2626);
+  box-shadow: 0 0 10px rgba(239, 68, 68, 0.5);
+  animation: none;
+}
+
 @keyframes pulse-dot {
   0%, 100% { opacity: 1; transform: scale(1); }
   50% { opacity: 0.7; transform: scale(1.2); }
@@ -404,6 +417,14 @@
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 0.5px;
+}
+
+.stock-status.low-stock .status-text {
+  color: #f59e0b;
+}
+
+.stock-status.out-of-stock .status-text {
+  color: #ef4444;
 }
 
 /* Price Section - Theme Colors */
@@ -509,6 +530,19 @@
 
 .premium-add-btn.expanded {
   transform: scale(1.02);
+}
+
+.premium-add-btn.disabled {
+  background: linear-gradient(135deg, #9ca3af, #6b7280);
+  cursor: not-allowed;
+  opacity: 0.6;
+  box-shadow: none;
+}
+
+.premium-add-btn.disabled:hover {
+  transform: none;
+  box-shadow: none;
+  background: linear-gradient(135deg, #9ca3af, #6b7280);
 }
 
 .btn-content {

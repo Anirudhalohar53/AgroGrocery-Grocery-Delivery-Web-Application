@@ -67,6 +67,9 @@ public class ProductController {
         try {
             Integer id = (Integer) request.get("id");
             String name = (String) request.get("name");
+            String unit = (String) request.get("unit");
+            
+            System.out.println("Updating product - ID: " + id + ", Name: " + name + ", Unit: " + unit);
             
             // Handle string to Double conversion for prices
             Double oldPrice = null;
@@ -103,8 +106,13 @@ public class ProductController {
             if (newPrice != null) {
                 product.setNew_price(newPrice);
             }
+            if (unit != null) {
+                product.setUnit(unit);
+            }
             
             Product updatedProduct = productRepository.save(product);
+            
+            System.out.println("Product updated successfully - New Unit: " + updatedProduct.getUnit());
             
             return ResponseEntity.ok(Map.of(
                 "success", true,
@@ -209,6 +217,44 @@ public class ProductController {
             return ResponseEntity.status(500).body(Map.of(
                 "success", false,
                 "message", "Internal server error: " + e.getMessage()
+            ));
+        }
+    }
+
+    @GetMapping("/testunit")
+    public ResponseEntity<Map<String, Object>> testUnitUpdate() {
+        try {
+            // Find a product to test
+            List<Product> products = productRepository.findAll();
+            if (!products.isEmpty()) {
+                return ResponseEntity.ok(Map.of(
+                    "success", true,
+                    "message", "No products found for testing"
+                ));
+            }
+            
+            Product testProduct = products.get(0);
+            String originalUnit = testProduct.getUnit();
+            
+            // Test unit update
+            testProduct.setUnit("test_unit");
+            Product saved = productRepository.save(testProduct);
+            
+            // Verify the update
+            Product retrieved = productRepository.findByProductId(testProduct.getProductId());
+            
+            return ResponseEntity.ok(Map.of(
+                "success", true,
+                "originalUnit", originalUnit,
+                "updatedUnit", saved.getUnit(),
+                "retrievedUnit", retrieved.getUnit(),
+                "unitUpdated", saved.getUnit().equals(retrieved.getUnit())
+            ));
+        } catch (Exception e) {
+            System.err.println("Error in unit test: " + e.getMessage());
+            return ResponseEntity.status(500).body(Map.of(
+                "success", false,
+                "message", "Test failed: " + e.getMessage()
             ));
         }
     }

@@ -52,7 +52,7 @@
 
 .listproduct-format-main {
   display: grid;
-  grid-template-columns: 80px 2fr 1fr 1fr 1fr 1fr 120px;
+  grid-template-columns: 80px 2fr 1fr 1fr 80px 1fr 120px;
   gap: 15px;
   width: 100%;
   padding: 20px 15px;
@@ -221,6 +221,37 @@
   box-shadow: 0 0 0 4px rgba(39, 174, 96, 0.1);
   transform: scale(1.01);
   background: white;
+}
+
+.listproduct-edit-select {
+  padding: 8px 10px;
+  border-radius: 8px;
+  border: 2px solid #27ae60;
+  background: #f8f9fa;
+  color: #171717;
+  font-size: 14px;
+  font-weight: 500;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.listproduct-edit-select:focus {
+  border-color: #2ecc71;
+  box-shadow: 0 0 0 4px rgba(39, 174, 96, 0.1);
+  transform: scale(1.01);
+  outline: none;
+}
+
+.unit-display {
+  background: rgba(255, 255, 255, 0.2);
+  padding: 6px 10px;
+  border-radius: 6px;
+  font-weight: 600;
+  text-align: center;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  font-size: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.3);
 }
 
 .listproduct-remove-button {

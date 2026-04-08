@@ -59,7 +59,7 @@ function Popular() {
           <div className="popular-products">
             {Array.isArray(popularProducts) && popularProducts.length > 0 ? (
               popularProducts.map((item, i) => (
-                <Item key={i} id={item.id} name={item.name} image={item.image} new_price={item.new_price} old_price={item.old_price} />
+                <Item key={i} id={item.id} name={item.name} image={item.image} new_price={item.new_price} old_price={item.old_price} stock={item.stock} available={item.available} unit={item.unit} />
               ))
             ) : (
               <p>No popular fruits available at the moment.</p>

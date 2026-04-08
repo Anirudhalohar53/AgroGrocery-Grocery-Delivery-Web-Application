@@ -11,7 +11,27 @@ function Item(props) {
   const [isAdded, setIsAdded] = useState(false);
   const [isFavorited, setIsFavorited] = useState(false);
 
+  // Determine stock status
+  const getStockStatus = () => {
+    const stock = props.stock || 0;
+    const available = props.available !== undefined ? props.available : true;
+    
+    if (!available || stock === 0) {
+      return { status: 'out-of-stock', text: 'Out of Stock', color: '#dc3545' };
+    } else if (stock <= 10) {
+      return { status: 'low-stock', text: `Only ${stock} ${props.unit || 'kg'} left`, color: '#ffc107' };
+    } else {
+      return { status: 'in-stock', text: 'In Stock', color: '#28a745' };
+    }
+  };
+
+  const stockStatus = getStockStatus();
+
   const handleAddToCart = () => {
+    // Prevent adding to cart if out of stock
+    if (stockStatus.status === 'out-of-stock') {
+      return;
+    }
     addToCart(props.id); // Call the addToCart function with the product ID
     setShowMessage(true);
     setIsAdded(true);
@@ -112,8 +132,11 @@ function Item(props) {
               <span className='rating-count'>(4.5)</span>
             </div>
             <div className='stock-status'>
-              <span className='status-indicator in-stock'></span>
-              <span className='status-text'>In Stock</span>
+              <span 
+                className={`status-indicator ${stockStatus.status}`}
+                style={{ backgroundColor: stockStatus.color }}
+              ></span>
+              <span className='status-text'>{stockStatus.text}</span>
             </div>
           </div>
         </div>
@@ -121,26 +144,27 @@ function Item(props) {
         {/* Price Section */}
         <div className='price-section'>
           <div className='price-main'>
-            <span className='current-price'>₹{props.new_price}</span>
-            <span className='original-price'>₹{props.old_price}</span>
+            <span className='current-price'>₹{props.new_price}/{props.unit || 'kg'}</span>
+            <span className='original-price'>₹{props.old_price}/{props.unit || 'kg'}</span>
           </div>
           <div className='price-savings'>
-            <span className='savings-text'>You save ₹{props.old_price - props.new_price}</span>
+            <span className='savings-text'>You save ₹{props.old_price - props.new_price} per {props.unit || 'kg'}</span>
           </div>
         </div>
 
         {/* Action Buttons */}
         <div className='action-section'>
           <button 
-            className={`premium-add-btn ${isAdded ? 'success' : ''} ${isHovered ? 'expanded' : ''}`}
+            className={`premium-add-btn ${isAdded ? 'success' : ''} ${isHovered ? 'expanded' : ''} ${stockStatus.status === 'out-of-stock' ? 'disabled' : ''}`}
             onClick={handleAddToCart}
+            disabled={stockStatus.status === 'out-of-stock'}
           >
             <div className='btn-content'>
               <span className='btn-icon'>
-                {isAdded ? '✅' : '🛒'}
+                {stockStatus.status === 'out-of-stock' ? '🚫' : (isAdded ? '✅' : '🛒')}
               </span>
               <span className='btn-text'>
-                {isAdded ? 'Added to Cart' : 'Add to Cart'}
+                {stockStatus.status === 'out-of-stock' ? 'Out of Stock' : (isAdded ? 'Added to Cart' : 'Add to Cart')}
               </span>
             </div>
             <div className='btn-ripple'></div>

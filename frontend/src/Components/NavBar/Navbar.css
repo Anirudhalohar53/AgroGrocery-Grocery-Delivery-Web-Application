@@ -196,11 +196,6 @@
     z-index: 40;
     animation: fadeIn 0.3s ease;
   }
-  
-  @keyframes fadeIn {
-    from { opacity: 0; }
-    to { opacity: 1; }
-  }
 }
 
 /* Tablet specific adjustments */
@@ -242,6 +237,22 @@
   .nav-div a img:hover {
     transform: none;
   }
+}
+
+/* Search Icon Theme Matching */
+.fa-search {
+  color: #28a745 !important;
+  transition: color 0.3s ease;
+}
+
+/* Search button hover effects */
+button:hover .fa-search {
+  color: #20c997 !important;
+}
+
+/* Search icon in mobile menu */
+.mobile-menu-overlay .fa-search {
+  color: #28a745 !important;
 }
 
 /* High contrast mode support */

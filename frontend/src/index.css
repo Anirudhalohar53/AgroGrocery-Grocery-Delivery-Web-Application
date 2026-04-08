@@ -7,18 +7,6 @@ body{
     font-family: 'poppins';
 }
 
-*{
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
-html , body{
-    height: 100%;
-    width: 100%;
-    scroll-behavior: smooth;
-    
-}
 
 /* Hide scroll bar but allow scrolling for the entire page */
 html, body {
@@ -32,11 +20,6 @@ html, body {
     display: none; /* Safari and Chrome */
   }
 
-/* Smooth scroll enhancements */
-html {
-    scroll-behavior: smooth;
-    scroll-padding-top: 100px; /* Account for fixed navbar */
-}
 
 /* Enhanced focus states for better accessibility */
 a:focus, button:focus, input:focus, textarea:focus, select:focus {

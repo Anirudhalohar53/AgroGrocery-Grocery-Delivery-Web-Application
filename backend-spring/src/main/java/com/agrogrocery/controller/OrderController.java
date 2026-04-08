@@ -215,6 +215,63 @@ public class OrderController {
         }
     }
 
+    @PostMapping("/cancel")
+    public ResponseEntity<Map<String, Object>> cancelOrder(@RequestBody Map<String, Object> request, 
+                                                         HttpServletRequest httpRequest) {
+        try {
+            String orderId = (String) request.get("orderId");
+            String email = getCurrentUserEmail(httpRequest);
+            User user = userRepository.findByEmail(email);
+            
+            if (user == null) {
+                return ResponseEntity.badRequest().body(Map.of(
+                    "success", false,
+                    "message", "User not found"
+                ));
+            }
+
+            Order order = orderRepository.findById(orderId).orElse(null);
+            if (order == null) {
+                return ResponseEntity.ok(Map.of(
+                    "success", false,
+                    "message", "Order not found"
+                ));
+            }
+
+            // Check if order belongs to the current user
+            if (!order.getUserId().equals(user.getId())) {
+                return ResponseEntity.ok(Map.of(
+                    "success", false,
+                    "message", "Unauthorized to cancel this order"
+                ));
+            }
+
+            // Check if order can be cancelled (only if not delivered)
+            if ("Delivered".equals(order.getStatus())) {
+                return ResponseEntity.ok(Map.of(
+                    "success", false,
+                    "message", "Cannot cancel delivered order"
+                ));
+            }
+
+            // Update order status to cancelled
+            order.setStatus("Cancelled");
+            orderRepository.save(order);
+
+            return ResponseEntity.ok(Map.of(
+                "success", true,
+                "message", "Order cancelled successfully"
+            ));
+
+        } catch (Exception e) {
+            System.out.println("Error cancelling order: " + e);
+            return ResponseEntity.status(500).body(Map.of(
+                "success", false,
+                "message", "Error cancelling order: " + e.getMessage()
+            ));
+        }
+    }
+
     private String getCurrentUserEmail(HttpServletRequest request) {
         String token = request.getHeader("auth-token");
         if (token != null && token.startsWith("Bearer ")) {

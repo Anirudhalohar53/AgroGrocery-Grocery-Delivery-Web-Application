@@ -2,18 +2,17 @@ import React, { useContext } from 'react'
 import { ShopContext } from '../Components/Context/ShopContext'
 import dropdown_icon from '../Components/Assets/dropdown_icon.png'
 import Item from '../Components/Item/Item'
-import '../Pages/ShopCategory.css'
+import '../Pages/DairyEssentials.css'
 
-const ShopCateogary = (props) => {
+const DairyEssentials = (props) => {
   const {all_product}=useContext(ShopContext)  
-  
   
   return (
     <div>
-      <img className='responsive-img display-block m-auto h-[40vh] object-cover mb-10' src={props.banner} alt="" />
+      <img className='responsive-img display-block m-auto h-[40vh] object-cover mb-10' src={props.banner} alt="Dairy Essentials Banner" />
       <div className='filter-section'>
         <p className='product-count'>
-          <span className='font-semibold'>12 Showing </span>out of {all_product.length} products
+          <span className='font-semibold'>Showing </span>all dairy products
         </p>
         <div className='sort-dropdown'>
           sort by <img className='h-[1vh] mt-[1.3vh]' src={dropdown_icon} alt="" />
@@ -27,7 +26,7 @@ const ShopCateogary = (props) => {
           style={{ width: '100%', height: '100%', display: 'block' }}
         >
            <defs>
-            <linearGradient id="waveGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+            <linearGradient id="dairyWaveGradient" x1="0%" y1="0%" x2="100%" y2="0%">
               <stop offset="0%" style={{stopColor:"#63e080ff", stopOpacity:1}} />
               <stop offset="50%" style={{stopColor:"#28a745", stopOpacity:1}} />
               <stop offset="100%" style={{stopColor:"#5cb85c", stopOpacity:1}} />
@@ -35,25 +34,22 @@ const ShopCateogary = (props) => {
           </defs>
           <path
             d="M0,128 C80,96 160,192 240,192 C320,192 400,96 480,128 C560,160 640,224 720,208 C800,192 880,96 960,96 C1040,96 1120,192 1200,192 L1200,320 L0,320 Z"
-            style={{ fill: "url(#waveGradient)"  }} // Same wave color here
-            transform="scale(1, -1) translate(0, -320)" // Flip vertically
+            style={{ fill: "url(#dairyWaveGradient)"  }}
+            transform="scale(1, -1) translate(0, -320)"
           />
         </svg>
       </div>
       
-      <div className=' pl-4 sm:pl-6 md:pl-8 lg:pl-8 pt-2 shopcategory-products grid gap-4 sm:gap-6 md:gap-8 lg:gap-20 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5'>
+      <div className=' pl-4 sm:pl-6 md:pl-8 lg:pl-8 pt-2 dairy-products grid gap-4 sm:gap-6 md:gap-8 lg:gap-20 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5'>
     
         {all_product.map((item,i)=>{
-          if(props.category===item.category){
-            return <Item  key={i} id ={item.id} name={item.name} image={item.image} new_price={item.new_price} old_price={item.old_price} stock={item.stock} available={item.available} unit={item.unit}/>
-            
+          if(item.category === 'Dairy' || item.category === 'dairy' || item.name.toLowerCase().includes('milk') || item.name.toLowerCase().includes('cheese') || item.name.toLowerCase().includes('butter') || item.name.toLowerCase().includes('yogurt') || item.name.toLowerCase().includes('cream')){
+            return <Item  key={i} id ={item.id} name={item.name} image={item.image} new_price={item.new_price} old_price={item.old_price}/>
           }
           else{
             return null
           }
-          
         })}
-        
         
       </div>
       <div className='wave-border'>
@@ -64,7 +60,7 @@ const ShopCateogary = (props) => {
       >
         <path
           d="M0,128 C80,96 160,192 240,192 C320,192 400,96 480,128 C560,160 640,224 720,208 C800,192 880,96 960,96 C1040,96 1120,192 1200,192 L1200,320 L0,320 Z"
-          style={{ fill:"url(#waveGradient)"  }}
+          style={{ fill:"url(#dairyWaveGradient)"  }}
         />
       </svg>
         </div>
@@ -77,4 +73,4 @@ const ShopCateogary = (props) => {
   )
 }
 
-export default ShopCateogary
+export default DairyEssentials

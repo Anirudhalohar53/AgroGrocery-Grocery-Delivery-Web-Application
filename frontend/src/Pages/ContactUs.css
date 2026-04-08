@@ -6,8 +6,8 @@
 
 /* Hero Section */
 .contact-hero {
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-  color: white;
+  background: linear-gradient(135deg, #f8faf8 0%, #e8f5e8 50%, #28a745 100%);
+  color: #1a1a1a;
   padding: 60px 20px 40px;
   text-align: center;
   position: relative;
@@ -76,7 +76,7 @@
   left: 0;
   width: 60px;
   height: 4px;
-  background: linear-gradient(135deg, #667eea, #764ba2);
+  background: linear-gradient(135deg, #28a745, #20c997);
   border-radius: 2px;
 }
 
@@ -164,7 +164,7 @@
 }
 
 .social-link:hover {
-  background: linear-gradient(135deg, #667eea, #764ba2);
+  background: linear-gradient(135deg, #28a745, #20c997);
   color: white;
   transform: translateY(-2px);
 }
@@ -197,7 +197,7 @@
   transform: translateX(-50%);
   width: 60px;
   height: 4px;
-  background: linear-gradient(135deg, #667eea, #764ba2);
+  background: linear-gradient(135deg, #28a745, #20c997);
   border-radius: 2px;
 }
 
@@ -241,9 +241,9 @@
 .form-group select:focus,
 .form-group textarea:focus {
   outline: none;
-  border-color: #667eea;
+  border-color: #28a745;
   background: white;
-  box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+  box-shadow: 0 0 0 3px rgba(40, 167, 69, 0.1);
 }
 
 .form-group textarea {
@@ -252,7 +252,7 @@
 }
 
 .submit-btn {
-  background: linear-gradient(135deg, #667eea, #764ba2);
+  background: linear-gradient(135deg, #28a745, #20c997);
   color: white;
   border: none;
   padding: 18px 40px;
@@ -266,7 +266,7 @@
 
 .submit-btn:hover:not(:disabled) {
   transform: translateY(-2px);
-  box-shadow: 0 10px 25px rgba(102, 126, 234, 0.3);
+  box-shadow: 0 10px 25px rgba(40, 167, 69, 0.3);
 }
 
 .submit-btn:disabled {

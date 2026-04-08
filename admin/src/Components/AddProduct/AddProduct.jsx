@@ -11,6 +11,7 @@ const AddProduct = () => {
     new_price:"",
     old_price:"",
     description:"",
+    unit:"kg",
   })
   const imageHandler =(e)=>{
       setImage(e.target.files[0]);
@@ -57,6 +58,7 @@ const AddProduct = () => {
             new_price:"",
             old_price:"",
             description:"",
+            unit:"kg",
           });
           setImage(false);
           // Reset file input
@@ -100,12 +102,26 @@ const AddProduct = () => {
             <p>Offer Price</p>
               <input value={productDetails.new_price} onChange={changHandler} type="text" name='new_price' placeholder='Enter sale price' />
           </div>
+          <div className="addproduct-itemfield">
+            <p>Unit</p>
+              <select value={productDetails.unit} onChange={changHandler} name="unit" className='add-product-selector'>
+                <option value="kg">Per Kilogram (kg)</option>
+                <option value="g">Per Gram (g)</option>
+                <option value="pcs">Per Piece (pcs)</option>
+                <option value="dozen">Per Dozen</option>
+                <option value="liter">Per Liter (L)</option>
+                <option value="ml">Per Milliliter (ml)</option>
+                <option value="pack">Per Pack</option>
+                <option value="bottle">Per Bottle</option>
+              </select>
+          </div>
         </div>
         <div className="addproduct-itemfield">
           <p>Product Category</p>
           <select value={productDetails.category} onChange={changHandler} name="category" className='add-product-selector'>
             <option value="Fruits">Fruits</option>
             <option value="Vegetables">Vegetables</option>
+            <option value="Dairy">Dairy</option>
             {/* <option value="HouseHolds">HouseHolds</option> */}
           </select>
         </div>

@@ -7,7 +7,8 @@ const ListProduct = () => {
   const [editFormData, setEditFormData] = useState({
     name: '',
     old_price: '',
-    new_price: ''
+    new_price: '',
+    unit: ''
   });
 
   const fetchInfo = async () => {
@@ -41,42 +42,70 @@ const ListProduct = () => {
     setEditFormData({
       name: product.name,
       old_price: product.old_price,
-      new_price: product.new_price
+      new_price: product.new_price,
+      unit: product.unit || 'kg'
     });
   }
 
   const handleEditChange = (e) => {
     const { name, value } = e.target;
+    console.log(`Field changed: ${name} = ${value}`);
+    
     setEditFormData({
       ...editFormData,
       [name]: value
     });
+    
+    // Debug: Log current state after change
+    setTimeout(() => {
+      console.log('Updated editFormData:', editFormData);
+    }, 100);
   }
 
   const handleSaveClick = async (id) => {
-    await fetch('http://localhost:8081/api/updateproduct', {
-      method: 'PUT',
-      headers: {
-        Accept: 'application/json',
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        id: parseInt(id),
-        name: editFormData.name,
-        old_price: editFormData.old_price,
-        new_price: editFormData.new_price
-      })
-    })
-    .then(response => response.json())
-    .then(data => {
+    // Debug: Check current form data
+    console.log('Current editFormData:', editFormData);
+    console.log('Unit value being sent:', editFormData.unit);
+    
+    const updateData = {
+      id: parseInt(id),
+      name: editFormData.name,
+      old_price: editFormData.old_price,
+      new_price: editFormData.new_price,
+      unit: editFormData.unit
+    };
+    
+    console.log('Final update data being sent:', updateData);
+    console.log('Stringified data:', JSON.stringify(updateData));
+    
+    try {
+      const response = await fetch('http://localhost:8081/api/updateproduct', {
+        method: 'PUT',
+        headers: {
+          Accept: 'application/json',
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(updateData)
+      });
+      
+      console.log('Response status:', response.status);
+      console.log('Response headers:', response.headers);
+      
+      const data = await response.json();
+      console.log('Response data:', data);
+      
       if (data.success) {
         setEditProductId(null);
         fetchInfo(); // Refresh the list of products
+        alert('Product updated successfully! Unit: ' + updateData.unit);
       } else {
-        console.error('Error:', data.message);
+        console.error('Update Error:', data.message);
+        alert('Failed to update product: ' + (data.message || 'Unknown error'));
       }
-    })
-    .catch(error => console.error('Error:', error));
+    } catch (error) {
+      console.error('Network Error:', error);
+      alert('Network error while updating product: ' + error.message);
+    }
   }
 
   return (
@@ -87,6 +116,7 @@ const ListProduct = () => {
         <p>Title</p>
         <p>Old Price</p>
         <p>New Price</p>
+        <p>Unit</p>
         <p>Category</p>
         <p>Actions</p>
       </div>
@@ -119,6 +149,21 @@ const ListProduct = () => {
                     onChange={handleEditChange}
                     className="listproduct-edit-input"
                   />
+                  <select
+                    name="unit"
+                    value={editFormData.unit}
+                    onChange={handleEditChange}
+                    className="listproduct-edit-select"
+                  >
+                    <option value="kg">kg</option>
+                    <option value="g">g</option>
+                    <option value="pcs">pcs</option>
+                    <option value="dozen">dozen</option>
+                    <option value="liter">liter</option>
+                    <option value="ml">ml</option>
+                    <option value="pack">pack</option>
+                    <option value="bottle">bottle</option>
+                  </select>
                   <button onClick={() => handleSaveClick(product.productId)} className="listproduct-save-button">Save</button>
                 </>
               ) : (
@@ -126,6 +171,7 @@ const ListProduct = () => {
                   <p>{product.name}</p>
                   <p>₹{product.old_price}</p>
                   <p>₹{product.new_price}</p>
+                  <p className="unit-display">{product.unit || 'kg'}</p>
                 </>
               )}
               <p>{product.category}</p>

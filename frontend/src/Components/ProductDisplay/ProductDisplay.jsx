@@ -8,6 +8,22 @@ import { getProductImage } from '../../utils/imageUtils';
 const ProductDisplay = (props) => {
     const {product}=props;
     const {addToCart,message,showMessage}=useContext(ShopContext);
+
+    // Determine stock status
+    const getStockStatus = () => {
+        const stock = product.stock || 0;
+        const available = product.available !== undefined ? product.available : true;
+        
+        if (!available || stock === 0) {
+            return { status: 'out-of-stock', text: 'Out of Stock', color: '#dc3545' };
+        } else if (stock <= 10) {
+            return { status: 'low-stock', text: `Only ${stock} ${product.unit || 'kg'} left`, color: '#ffc107' };
+        } else {
+            return { status: 'in-stock', text: `${stock} ${product.unit || 'kg'} in Stock`, color: '#28a745' };
+        }
+    };
+
+    const stockStatus = getStockStatus();
     
 
 
@@ -71,12 +87,28 @@ const ProductDisplay = (props) => {
                 </div>
                 <div className="productdisplay-right-prices">
                     <div className="productdisplay-right-price-old">
-                    ₹{product.old_price}
+                    ₹{product.old_price}/{product.unit || 'kg'}
                     </div>
-                <div className="productdisplay-right-price-new">₹{product.new_price}</div>
+                <div className="productdisplay-right-price-new">₹{product.new_price}/{product.unit || 'kg'}</div>
                 </div>
                 <div className="productdisplay-right-description ">
                     {product.description}
+                </div>
+                <div className="productdisplay-right-stock">
+                    <span 
+                        className="stock-indicator"
+                        style={{ 
+                            backgroundColor: stockStatus.color,
+                            width: '12px',
+                            height: '12px',
+                            borderRadius: '50%',
+                            display: 'inline-block',
+                            marginRight: '8px'
+                        }}
+                    ></span>
+                    <span style={{ color: stockStatus.color, fontWeight: '600' }}>
+                        {stockStatus.text}
+                    </span>
                 </div>
                 <div className="productdisplay-right-size">
                     <h1>Select Quantity</h1>
@@ -89,7 +121,17 @@ const ProductDisplay = (props) => {
                     </div>
                 </div>
                 <div className='flex gap-[20px]'>
-                <button className='active:bg-green-600' onClick={()=>{addToCart(product.id)}}>ADD TO CART</button>
+                <button 
+                    className={`active:bg-green-600 ${stockStatus.status === 'out-of-stock' ? 'opacity-50 cursor-not-allowed' : ''}`}
+                    onClick={() => {
+                        if (stockStatus.status !== 'out-of-stock') {
+                            addToCart(product.id);
+                        }
+                    }}
+                    disabled={stockStatus.status === 'out-of-stock'}
+                >
+                    {stockStatus.status === 'out-of-stock' ? 'OUT OF STOCK' : 'ADD TO CART'}
+                </button>
                 {showMessage && (<p className={`fade-message ${showMessage ? 'visible' : ''} text-green-600 mt-4`}>{message}</p>)}
                 </div>
                 <p className="productdisplay-right-category"><span>Category :</span>{product.category}</p>
